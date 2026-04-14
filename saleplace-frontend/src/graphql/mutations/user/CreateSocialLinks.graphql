@@ -1,0 +1,8 @@
+mutation CreateSocialLink($data: SocialLinkInput!){
+  createSocialLink(data: $data){
+    id
+    title
+    position
+    position
+  }
+}

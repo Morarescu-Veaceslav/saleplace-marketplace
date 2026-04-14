@@ -1,0 +1,30 @@
+fragment ConversationItemFields on ConversationListItemModel {
+  id
+  participant {
+    id
+    username
+    avatar
+    avatarType
+    isOnline
+    __typename
+  }
+  lastMessage {
+    id
+    content
+    sender {
+      id
+      username
+      avatar
+      avatarType
+      __typename
+    }
+    conversationId
+    updatedAt
+    createdAt
+    deleted
+    __typename
+  }
+  unreadCount
+  updatedAt
+  __typename
+}

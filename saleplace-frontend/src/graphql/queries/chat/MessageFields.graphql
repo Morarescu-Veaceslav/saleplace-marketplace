@@ -1,0 +1,15 @@
+fragment MessageFields on MessageModel {
+  id
+  content
+  createdAt
+  updatedAt
+  deleted
+  type
+  conversationId
+  sender {
+    id
+    username
+    avatar
+    avatarType
+  }
+}

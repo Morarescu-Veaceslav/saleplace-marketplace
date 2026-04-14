@@ -1,0 +1,5 @@
+mutation StartConversation($data: StartConversationInput!) {
+  startConversation(data: $data) {
+    ...ConversationItemFields
+  }
+}

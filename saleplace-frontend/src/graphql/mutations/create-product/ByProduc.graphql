@@ -1,0 +1,5 @@
+mutation ByProduct($productId: String!){
+  byProduct(productId:$productId){
+    checkoutUrl
+  }
+}

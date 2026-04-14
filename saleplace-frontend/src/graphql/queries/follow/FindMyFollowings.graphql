@@ -1,0 +1,5 @@
+query FindMyFollowings($pagination: FollowingsInput) {
+  findMyFollowings(pagination: $pagination) {
+    ...FollowPaginationFields
+  }
+}

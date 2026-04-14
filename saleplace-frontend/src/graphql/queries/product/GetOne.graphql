@@ -1,0 +1,53 @@
+query GetOne($id: String!) {
+  getOne(id: $id) {
+    id
+    title
+    slug
+    price
+    views
+    averageRating
+    description
+    status
+    averageRating
+    reviewsCount
+    createdAt
+    images {
+      id
+      url
+      position
+    }
+    category {
+      id
+      name
+      description
+      icon
+      isActive
+      parentId
+      children {
+        id
+        name
+      }
+    }
+    user {
+      id
+      username
+      displayName
+      avatar
+      avatarType
+    }
+    reviews {
+      id
+      rating
+      comment
+      createdAt
+      user {
+        id
+        username
+        displayName
+        avatar
+        avatarType
+        createdAt 
+      }
+    }
+  }
+}

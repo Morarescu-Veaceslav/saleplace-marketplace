@@ -1,0 +1,30 @@
+subscription ChatChange {
+  chatChange {
+    type
+    conversationId
+    lastMessage {
+      id
+      content
+      conversationId
+      createdAt
+      updatedAt
+      deleted
+      type
+      sender {
+        id
+        username
+        avatar
+        avatarType
+        isOnline
+      }
+    }
+    participant{
+      id
+      username
+      avatar
+      avatarType
+      isOnline
+    }
+   unreadCount
+  }
+}

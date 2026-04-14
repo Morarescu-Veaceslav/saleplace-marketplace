@@ -1,0 +1,16 @@
+query GetSubscription{
+  getSubscription{
+    id
+    status
+    interval
+    productUser
+    plan{
+      id
+      name
+      price
+      limit
+    }
+    currentPeriodStart
+    currentPeriodEnd
+  }
+}

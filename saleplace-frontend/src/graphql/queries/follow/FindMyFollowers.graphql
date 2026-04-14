@@ -1,0 +1,11 @@
+query FindMyFollowers(
+  $username: String!
+  $pagination: FollowingsInput
+) {
+  findMyFollowers(
+    username: $username
+    pagination: $pagination
+  ) {
+   ...FollowPaginationFields
+  }
+}

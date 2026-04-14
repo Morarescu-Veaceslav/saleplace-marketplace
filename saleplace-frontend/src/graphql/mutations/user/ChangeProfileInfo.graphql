@@ -1,0 +1,8 @@
+mutation ChangeProfileInfo($data: ChangeProfileInfoInput!){
+  changeProfileInfo(data: $data){
+    id
+    username
+    displayName
+    bio
+  }
+}

@@ -1,0 +1,3 @@
+mutation PublishProduct($productId: String!){
+  publishProduct(productId: $productId)
+}

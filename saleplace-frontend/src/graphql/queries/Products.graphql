@@ -1,0 +1,31 @@
+query Products($filters: ProductsFilterInput) {
+  filters(filters: $filters) {
+    items {
+      id
+      title
+      price
+      status
+      averageRating
+      reviewsCount
+      images {
+        url
+      }
+      category {
+        id
+        name
+      }
+      user {
+        username
+        displayName
+        avatar
+      }
+      createdAt
+    }
+    meta {
+      total
+      page
+      limit
+      totalPages
+    }
+  }
+}

@@ -1,0 +1,14 @@
+fragment FollowPaginationFields on FollowPagination {
+  items {
+    id
+    username
+    displayName
+    avatar
+    avatarType
+    createdAt
+    isFollowedByCurrentUser
+  }
+  total
+  take
+  skip
+}

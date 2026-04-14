@@ -1,0 +1,478 @@
+generator client {
+  provider   = "prisma-client-js"
+  output     = "../generated/prisma"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  email    String @unique
+  password String
+
+  username    String @unique
+  displayName String @map("display_name")
+
+  avatarType AvatarType @default(PRESET)
+  avatar     String?    @default("avatar_1")
+  bio        String?
+
+  stripeCustomerId String? @unique
+
+  role         Roles     @default(USER)
+  blockedUntil DateTime? @map("blocked_until")
+
+  isVerified      Boolean @default(false) @map("is_verified")
+  isEmailVerified Boolean @default(false) @map("is_email_verified")
+
+  subscription Subscription?
+
+  isTotpEnabled Boolean @default(false) @map("is_totp_enabled")
+  totpSecret    String? @map("totp_secret")
+
+  followersCount Int @default(0)
+  followingCount Int @default(0)
+
+  isDeactivated Boolean   @default(false) @map("is_deactivated")
+  deactivatedAt DateTime? @map("deactivated_at")
+
+  products    Product[]
+  reviews     Review[]
+  tokens      Token[]
+  socialLinks SocialLink[]
+
+  follower  Follow[] @relation(name: "follower")
+  following Follow[] @relation(name: "following")
+
+  userNotifications  Notification[] @relation(name: "userNotifications")
+  actorNotifications Notification[] @relation(name: "actorNotifications")
+
+  notificationCounters NotificationCounter[]
+
+  conversationsA           Conversation[]            @relation("userA")
+  conversationsB           Conversation[]            @relation("userB")
+  messages                 Message[]
+  buyerOrders              Order[]                   @relation("BuyerOrders")
+  sellerOrders             Order[]                   @relation("SellerOrders")
+  updatedAt                DateTime                  @updatedAt @map("updated_at")
+  createdAt                DateTime                  @default(now()) @map("created_at")
+  conversationParticipants ConversationParticipant[]
+  invoices                 Invoice[]
+
+  userBlocksAsBlocked UserBlock[] @relation("UserBlocksAsBlocked")
+
+  @@index([username, isDeactivated])
+  @@map("users")
+}
+
+model SocialLink {
+  id String @id @default(uuid())
+
+  title    String
+  url      String
+  position Int
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?  @map("user_id")
+
+  @@unique([id, userId])
+  @@map("social_links")
+}
+
+model Token {
+  id String @id @default(uuid())
+
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String? @map("user_id")
+
+  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([id, type, userId])
+  @@map("tokens")
+}
+
+model Category {
+  id          String  @id @default(uuid())
+  name        String  @unique
+  slug        String  @unique
+  description String?
+  icon        String?
+
+  parentId String?
+  parent   Category?  @relation("CategoryTree", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryTree")
+
+  isActive Boolean @default(true)
+  order    Int     @default(0)
+
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([parentId, name])
+  @@index([parentId])
+  @@map("categories")
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  title       String
+  slug        String
+  description String
+  price       Decimal @db.Decimal(10, 2)
+  views       Int     @default(0)
+
+  status        ProductStatus @default(ACTIVE)
+  publishedAt   DateTime?
+  averageRating Float         @default(0)
+  reviewsCount  Int           @default(0)
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @map("user_id")
+
+  category   Category       @relation(fields: [categoryId], references: [id])
+  categoryId String
+  reviews    Review[]
+  images     ProductImage[]
+  orders     Order[]
+  deletedAt  DateTime?
+  updatedAt  DateTime       @updatedAt @map("updated_at")
+  createdAt  DateTime       @default(now()) @map("created_at")
+
+  @@index([title])
+  @@index([views])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([categoryId])
+  @@index([price, status])
+  @@index([status])
+  @@map("products")
+}
+
+model Order {
+  id String @id @default(uuid())
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  buyerId String
+  buyer   User   @relation("BuyerOrders", fields: [buyerId], references: [id])
+
+  sellerId String
+  seller   User   @relation("SellerOrders", fields: [sellerId], references: [id])
+
+  price       Decimal
+  currency    String
+  status      OrderStatus
+  transaction Transaction?
+  expiresAt   DateTime
+  createdAt   DateTime     @default(now())
+
+  @@index([id, createdAt])
+}
+
+model StripeEvent {
+  id        String   @id @default(uuid())
+  eventId   String   @unique
+  type      String
+  createdAt DateTime @default(now())
+}
+
+model Subscription {
+  id     String @id @default(uuid())
+  userId String @unique
+  planId String
+
+  stripeSubscriptionId String             @unique
+  status               SubscriptionStatus
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  interval             String?
+  productsUsed         Int                @default(0)
+  canceledAtPeriodEnd  Boolean?           @default(false)
+  user                 User               @relation(fields: [userId], references: [id])
+  plan                 SubscriptionPlan   @relation(fields: [planId], references: [id])
+
+  createdAt DateTime  @default(now())
+  invoices  Invoice[]
+
+  @@index([userId, createdAt])
+}
+
+model SubscriptionPlan {
+  id            String  @id @default(uuid())
+  name          String
+  productLimit  Int?
+  price         Decimal
+  stripePriceId String  @unique
+
+  createdAt     DateTime       @default(now())
+  subscriptions Subscription[]
+}
+
+model Transaction {
+  id String @id @default(uuid())
+
+  orderId String @unique
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  stripePaymentIntentId String?           @unique
+  amount                Decimal
+  currency              String
+  status                TransactionStatus
+  stripeRefundId        String?
+  createdAt             DateTime          @default(now())
+
+  @@index([orderId])
+}
+
+model Invoice {
+  id String @id @default(uuid())
+
+  stripeInvoiceId      String  @unique
+  stripeCustomerId     String
+  stripeSubscriptionId String?
+
+  userId         String?
+  subscriptionId String?
+
+  amountPaid Int
+  currency   String
+
+  status        InvoiceStatus
+  billingReason String?
+
+  periodStart DateTime?
+  periodEnd   DateTime?
+
+  invoiceUrl String?
+  invoicePdf String?
+
+  createdAt DateTime  @default(now())
+  paidAt    DateTime?
+
+  user         User?         @relation(fields: [userId], references: [id])
+  subscription Subscription? @relation(fields: [subscriptionId], references: [id])
+
+  @@index([userId])
+  @@index([subscriptionId])
+  @@index([userId, createdAt])
+}
+
+model ProductImage {
+  id       String @id @default(uuid())
+  url      String
+  position Int    @default(0)
+
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId String
+
+  createdAt DateTime @default(now())
+
+  @@index([productId, position])
+  @@map("product_images")
+}
+
+model Review {
+  id        String  @id @default(uuid())
+  rating    Int?
+  comment   String?
+  isDeleted Boolean @default(false)
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String  @map("user_id")
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([userId, productId])
+  @@index([productId])
+  @@index([userId])
+  @@index([productId, createdAt])
+  @@map("reviews")
+}
+
+model Follow {
+  followerId  String
+  followingId String
+
+  follower User @relation(name: "follower", fields: [followerId], references: [id])
+
+  following User @relation(name: "following", fields: [followingId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@id([followerId, followingId])
+  @@index([followingId])
+  @@map("folows")
+}
+
+model Notification {
+  id        String           @id @default(uuid())
+  userId    String
+  actorId   String?
+  type      NotificationType
+  entityId  String?
+  url       String?
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  user  User  @relation("userNotifications", fields: [userId], references: [id])
+  actor User? @relation("actorNotifications", fields: [actorId], references: [id])
+
+  @@index([userId, isRead])
+  @@index([userId, createdAt])
+}
+
+model NotificationCounter {
+  userId      String @id
+  unreadCount Int    @default(0)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+model Conversation {
+  id String @id @default(uuid())
+
+  userAId String
+  userBId String
+
+  userA User @relation("userA", fields: [userAId], references: [id])
+  userB User @relation("userB", fields: [userBId], references: [id])
+
+  messages Message[]
+
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+  conversationParticipants ConversationParticipant[]
+
+  @@unique([userAId, userBId])
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  senderId       String
+  content        String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime?
+  deleted        Boolean      @default(false)
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  sender         User         @relation(fields: [senderId], references: [id])
+}
+
+model ConversationParticipant {
+  id             String       @id @default(uuid())
+  conversationId String
+  userId         String
+  lastReadAt     DateTime?
+  deletedAt      DateTime?
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+  user           User         @relation(fields: [userId], references: [id])
+
+  @@unique([conversationId, userId])
+}
+
+model UserBlock {
+  id        String   @id @default(uuid())
+  blockerId String
+  blockedId String
+  createdAt DateTime @default(now())
+  blocked   User     @relation("UserBlocksAsBlocked", fields: [blockedId], references: [id])
+
+  @@unique([blockerId, blockedId])
+}
+
+enum Roles {
+  ADMIN
+  USER
+}
+
+enum TokenType {
+  EMAIL_VERIFY
+  PASSWORD_RESET
+  DEACTIVATE_ACCOUNT
+}
+
+enum AvatarType {
+  PRESET
+  CUSTOM
+}
+
+enum NotificationType {
+  POST_CREATED
+  COMMENT_CREATED
+  ORDER_PAID
+  PRODUCT_SOLD
+  FOLLOWED
+  ORDER_REFUNDED
+  ORDER_REFUNDED_FAILED
+  ORDER_REFUNDED_SELLER
+  INVOICE_PAID
+  SUBSCRIPTION_CANCEL_SCHEDULED
+  SUBSCRIPTION_CANCELED
+  SUBSCRIPTION_DELETED
+  LIKED
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  SOLD
+  ARCHIVED
+  DELETED
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELED
+  REFUNDED
+  REFUND_PENDING
+  REFUND_IN_PROGRESS
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELED
+  REFUNDED
+  REFUND_REQUESTED
+  REFUND_FAILED
+}
+
+enum UserPlan {
+  FREE
+  BASIC
+  PRO
+  UNLIMITED
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  CANCELED_PENDING
+  CANCELED
+}
+
+enum InvoiceStatus {
+  PAID
+  FAILED
+  OPEN
+  DRAFT
+  VOID
+}

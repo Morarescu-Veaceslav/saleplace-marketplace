@@ -1,0 +1,15 @@
+mutation UpdateReview($data: UpdateReviewInput!){
+editReview(data: $data){
+     id
+    rating
+    comment
+    createdAt
+    user{
+      id
+      username
+      displayName
+      avatar
+      avatarType
+    }
+}
+}

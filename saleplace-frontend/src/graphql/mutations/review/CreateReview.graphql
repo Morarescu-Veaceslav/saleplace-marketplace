@@ -1,0 +1,15 @@
+mutation CreateReview($data: CreateReviewInput!){
+  createReview(data: $data){
+    id
+    rating
+    comment
+    createdAt
+    user{
+      id
+      username
+      displayName
+      avatar
+      avatarType
+    }
+  }
+}

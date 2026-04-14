@@ -1,0 +1,17 @@
+query FindNotificationsByUser($pagination: PaginationInput) {
+  findNotificationsByUser(pagination: $pagination) {
+    items {
+      id
+      type
+      isRead
+      createdAt
+      entityId
+      actor {
+        username
+        avatar
+        avatarType
+      }
+    }
+    total
+  }
+}

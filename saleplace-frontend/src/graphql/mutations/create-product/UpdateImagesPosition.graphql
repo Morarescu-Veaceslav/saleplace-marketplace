@@ -1,0 +1,3 @@
+mutation UpdateImagesPosition($data: DeleteProductImagesInput!){
+    updateImagesPosition(data: $data)
+}

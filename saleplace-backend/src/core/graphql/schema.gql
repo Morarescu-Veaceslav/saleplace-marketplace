@@ -1,0 +1,687 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ActorModel {
+  avatar: String
+  avatarType: String
+  username: String!
+}
+
+type AuthModel {
+  message: String
+  user: UserModel
+}
+
+type BlockUser {
+  avatar: String
+  avatarType: String!
+  createdAt: DateTime!
+  displayName: String!
+  id: ID!
+  username: String!
+}
+
+input BlockUserInput {
+  skip: Int
+  take: Int
+}
+
+type BlockUserPagination {
+  items: [BlockUser!]!
+  skip: Int!
+  take: Int!
+  total: Int!
+}
+
+type CanceledSubscription {
+  id: String!
+  status: String!
+}
+
+type CategoryModel {
+  children: [CategoryModel]
+  description: String
+  icon: String
+  id: ID!
+  isActive: Boolean!
+  name: String!
+  parentId: String
+  slug: String!
+}
+
+input ChangeEmailInput {
+  email: String!
+  password: String!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input ChangePresetAvatarInput {
+  preset: String!
+}
+
+type ChangePresetAvatarModel {
+  avatar: String
+  avatarType: String!
+  id: ID!
+}
+
+input ChangeProfileInfoInput {
+  bio: String
+  displayName: String!
+  username: String!
+}
+
+type ChatParticipantModel {
+  avatar: String
+  avatarType: String!
+  id: ID!
+  isOnline: Boolean
+  username: String!
+}
+
+type ChatUserModel {
+  avatar: String
+  avatarType: String
+  id: ID!
+  isOnline: Boolean
+  username: String!
+}
+
+type CheckoutResponse {
+  checkoutUrl: String!
+}
+
+type ConversationListItemModel {
+  id: ID!
+  lastMessage: MessageModel
+  participant: UserModel!
+  unreadCount: Int!
+  updatedAt: DateTime!
+}
+
+input CreateCategoryInput {
+  description: String
+  icon: String
+  isActive: Boolean!
+  name: String!
+  parentId: String
+}
+
+input CreateProductInput {
+  categoryId: String!
+  description: String!
+  price: Float!
+  title: String!
+}
+
+type CreateProductModel {
+  id: ID!
+}
+
+input CreateReviewInput {
+  comment: String
+  productId: String!
+  rating: Int
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DeactivateAccountInput {
+  email: String!
+  password: String!
+  pin: String
+}
+
+type DeactivateAccountResult {
+  deactivatedAt: DateTime
+  message: String
+  success: Boolean!
+  userId: ID
+}
+
+input DeleteProductImagesInput {
+  imageIds: [ID!]!
+  productId: ID!
+}
+
+input DeleteProductInput {
+  productId: ID!
+}
+
+input DeleteReviewInput {
+  reviewId: String!
+}
+
+type DeviceModel {
+  browser: String!
+  os: String!
+  type: String!
+}
+
+input EditMessage {
+  messageId: ID!
+  newContent: String!
+}
+
+input EnableTotpInput {
+  pin: String!
+  secret: String!
+}
+
+type FollowPagination {
+  items: [FollowingUser!]!
+  skip: Int!
+  take: Int!
+  total: Int!
+}
+
+input FollowUserInput {
+  targetUserId: ID!
+}
+
+type FollowingUser {
+  avatar: String
+  avatarType: String!
+  createdAt: DateTime!
+  displayName: String!
+  id: ID!
+  isFollowedByCurrentUser: Boolean
+  username: String!
+}
+
+input FollowingsInput {
+  skip: Int
+  take: Int
+}
+
+type GetSubscriptionResponse {
+  currentPeriodEnd: DateTime!
+  currentPeriodStart: DateTime!
+  id: String!
+  interval: String
+  plan: PlanModel!
+  productUser: Float!
+  status: String!
+}
+
+input ItemPaginationInput {
+  skip: Int
+  take: Int
+}
+
+type LocationModel {
+  city: String!
+  country: String!
+  latitude: Float!
+  longitude: Float!
+}
+
+input LoginInput {
+  login: String!
+  password: String!
+  pin: String
+}
+
+type MessageChangeModel {
+  conversationId: ID!
+  lastMessage: MessageModel!
+  participant: ChatParticipantModel!
+  type: String!
+  unreadCount: Int!
+}
+
+type MessageModel {
+  content: String!
+  conversationId: ID!
+  createdAt: String!
+  deleted: Boolean!
+  id: ID!
+  sender: ChatUserModel
+  type: String
+  updatedAt: String
+}
+
+type MessagePage {
+  messages: [MessageModel!]!
+  totalCount: Int!
+}
+
+type MessageUpdated {
+  content: String!
+  id: ID!
+  updatedAt: DateTime
+}
+
+type Meta {
+  limit: Float!
+  page: Float!
+  total: Float!
+  totalPages: Float!
+}
+
+type Mutation {
+  blockUser(blockedId: String!): BlockUser!
+  byProduct(productId: String!): CheckoutResponse!
+  cancelSubscription: CanceledSubscription!
+  changeEmail(data: ChangeEmailInput!): UserEmailModel!
+  changePassword(data: ChangePasswordInput!): Boolean!
+  changeProfileAvatar(data: ChangePresetAvatarInput): ChangePresetAvatarModel
+  changeProfileInfo(data: ChangeProfileInfoInput!): UserInfoModel!
+  clearSessionCookie: Boolean!
+  createCategory(data: CreateCategoryInput!): Boolean!
+  createProduct(data: CreateProductInput!): CreateProductModel!
+  createReview(data: CreateReviewInput!): ReviewModel!
+  createSocialLink(data: SocialLinkInput!): PublicSocialLinkModel!
+  createUser(data: CreateUserInput!): Boolean!
+  deactivateAccount(data: DeactivateAccountInput!): DeactivateAccountResult!
+  deleteConversation(conversationId: String!): Boolean!
+  deleteMessage(messageId: String!): Boolean!
+  deleteNotification(notificationId: String!): Boolean!
+  deleteProduct(data: DeleteProductInput!): Boolean!
+  deleteProductImages(data: DeleteProductImagesInput!): Boolean!
+  deleteReview(data: DeleteReviewInput!): Boolean!
+  disableTotp: TotpDisable!
+  editCategory(data: UpdateCategoryInput!, id: String!): Boolean!
+  editMessage(data: EditMessage!): MessageUpdated!
+  editReview(data: UpdateReviewInput!): ReviewModel!
+  enableTotp(data: EnableTotpInput!): TotpEnable!
+  followUser(data: FollowUserInput!): Boolean!
+  loginUser(data: LoginInput!): AuthModel!
+  logoutUser: Boolean!
+  markAllNotificationsAsRead: Boolean!
+  markConversationAsRead(conversationId: String!): Boolean!
+  newPassword(data: NewPasswordInput!): Boolean!
+  publishProduct(productId: String!): Boolean!
+  refund(orderId: String!): RefundResponse!
+  removeProfileAvatar: ChangePresetAvatarModel!
+  removeSession(id: String!): RemoveSession!
+  removeSocialLink(id: String!): Boolean!
+  reorderSocialLinks(list: [SocialLinkOrderInput!]!): Boolean!
+  resetPassword(data: ResetPasswordInput!): Boolean!
+  restoreReview(data: RestoreReviewInput!): Boolean!
+  sendMessage(content: String!, conversationId: String!): MessageModel!
+  startConversation(data: StartConversationInput!): ConversationListItemModel!
+  subscription(planId: String!): SubscriptionResponse!
+  trackProductView(productId: String!): Boolean!
+  unblockUser(blockedId: String!): Boolean!
+  unfollowUser(data: UnfollowUserInput!): Boolean!
+  updateImagesPosition(data: DeleteProductImagesInput!): Boolean!
+  updateProduct(data: UpdateProductInput!): Boolean!
+  updateSocialLink(data: SocialLinkInput!, id: String!): PublicSocialLinkModel!
+  verifyAccount(data: VerificationInput!): UserModel!
+}
+
+type MyReviewModel {
+  comment: String
+  createdAt: DateTime!
+  id: ID!
+  isDeleted: Boolean!
+  product: MyReviewProductModel!
+  rating: Int
+}
+
+type MyReviewProductModel {
+  id: ID!
+  title: String!
+}
+
+input NewPasswordInput {
+  password: String!
+  passwordRepeat: String!
+  token: String!
+}
+
+type NotificationModel {
+  actor: ActorModel
+  createdAt: DateTime!
+  entityId: ID
+  id: ID!
+  isRead: Boolean!
+  type: NotificationType!
+  url: String
+}
+
+"""Notification type"""
+enum NotificationType {
+  COMMENT_CREATED
+  FOLLOWED
+  INVOICE_PAID
+  LIKED
+  ORDER_PAID
+  ORDER_REFUNDED
+  ORDER_REFUNDED_FAILED
+  ORDER_REFUNDED_SELLER
+  POST_CREATED
+  PRODUCT_SOLD
+  SUBSCRIPTION_CANCELED
+  SUBSCRIPTION_CANCEL_SCHEDULED
+  SUBSCRIPTION_DELETED
+}
+
+type NotificationsListResponse {
+  items: [NotificationModel!]!
+  total: Int!
+}
+
+type PaginatedProducts {
+  items: [ProductModel!]!
+  meta: Meta!
+}
+
+input PaginationInput {
+  skip: Int
+  take: Int
+}
+
+type PlanModel {
+  id: String!
+  limit: Int
+  name: String!
+  price: Float!
+}
+
+type ProductImageModel {
+  id: ID!
+  position: Float!
+  url: String
+}
+
+type ProductModel {
+  averageRating: Float!
+  category: CategoryModel
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  images: [ProductImageModel!]
+  price: Float!
+  reviews: [ReviewModel!]
+  reviewsCount: Float!
+  slug: String
+  status: ProductStatus!
+  title: String!
+  user: PublicUserModel!
+  views: Float!
+}
+
+type ProductResponse {
+  hasMore: Boolean!
+  items: [ProductsModel!]!
+  nextCursor: String
+}
+
+enum ProductStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+  DRAFT
+  SOLD
+}
+
+input ProductsFilterInput {
+  categoryId: String
+  limit: Int = 10
+  maxPrice: Float
+  minPrice: Float
+  page: Int = 1
+  search: String
+  sortBy: String
+}
+
+type ProductsModel {
+  createdAt: DateTime!
+  id: ID!
+  images: String
+  price: Float!
+  slug: String!
+  title: String!
+}
+
+type PublicSocialLinkModel {
+  id: ID!
+  position: Float!
+  title: String!
+  url: String!
+}
+
+type PublicUserModel {
+  avatar: String
+  avatarType: String!
+  bio: String
+  createdAt: DateTime!
+  displayName: String!
+  id: ID!
+  isFollowedByCurrentUser: Boolean
+  isOnline: Boolean
+  username: String!
+}
+
+type Query {
+  allCategory: [CategoryModel!]!
+  filters(filters: ProductsFilterInput): PaginatedProducts!
+  findCurrentSession: SessionModel!
+  findMyFollowers(pagination: FollowingsInput, username: String): FollowPagination!
+  findMyFollowings(pagination: FollowingsInput): FollowPagination!
+  findNotificationsByUser(pagination: PaginationInput): NotificationsListResponse!
+  findProfile: UserModel
+  findSessionsByUser: [SessionModel!]!
+  findUnreadNotificationCount: Int!
+  generateTotpSecret: TotpModel!
+  getBlockUser(pagination: BlockUserInput): BlockUserPagination!
+  getConversations: [ConversationListItemModel!]!
+  getMessages(conversationId: String!, pagination: ItemPaginationInput): MessagePage!
+  getOne(id: String!): ProductModel!
+  getSubscription: [GetSubscriptionResponse!]!
+  getUnreadCount(conversationId: String!): String!
+  getUserProducts(cursor: String, take: Int, username: String!): ProductResponse!
+  myReviews: [MyReviewModel!]!
+  onlineUsers: [String!]!
+  publicProfile(username: String!): PublicUserModel
+  socialLinks(username: String!): [PublicSocialLinkModel!]!
+  subscriptionPlans: [SubscriptionPlanResponse!]!
+  transactionsList(pagination: TransactionsPaginationInput): TransactionsListResponse!
+}
+
+type RefundResponse {
+  refundId: String!
+  status: String!
+}
+
+type RemoveSession {
+  removedSessionId: String!
+  success: Boolean!
+  userId: String!
+}
+
+input ResetPasswordInput {
+  email: String!
+}
+
+input RestoreReviewInput {
+  reviewId: String!
+}
+
+type ReviewModel {
+  comment: String
+  createdAt: DateTime!
+  id: ID!
+  rating: Int
+  user: PublicUserModel!
+}
+
+type SessionMetadataModel {
+  device: DeviceModel!
+  ip: String!
+  location: LocationModel!
+}
+
+type SessionModel {
+  createdAt: String!
+  id: ID!
+  metadata: SessionMetadataModel!
+  userId: String!
+}
+
+input SocialLinkInput {
+  title: String!
+  url: String!
+}
+
+input SocialLinkOrderInput {
+  id: String!
+  position: Float!
+}
+
+input StartConversationInput {
+  userId: ID!
+}
+
+type Subscription {
+  chatChange: MessageChangeModel!
+  messageChange(conversationId: String!): MessageModel!
+  notificationCreated(userId: String!): NotificationModel!
+}
+
+type SubscriptionPlanResponse {
+  id: String!
+  name: String!
+  price: Float!
+  productLimit: Float
+}
+
+type SubscriptionResponse {
+  url: String!
+  warning: SubscriptionWarning
+}
+
+type SubscriptionWarning {
+  code: String!
+  params: SubscriptionWarningParams!
+}
+
+type SubscriptionWarningParams {
+  remaining: Int!
+}
+
+type TotpDisable {
+  id: ID!
+  isTotpEnabled: Boolean!
+}
+
+type TotpEnable {
+  id: ID!
+  isTotpEnabled: Boolean!
+}
+
+type TotpModel {
+  qrcodeUrl: String!
+  secret: String!
+}
+
+type TransactionListItem {
+  amount: Float!
+  counterpartyId: String!
+  counterpartyUsername: String!
+  createdAt: DateTime!
+  currency: String!
+  id: String!
+  orderId: String!
+  productTitle: String!
+  status: TransactionStatus!
+  viewerRole: String!
+}
+
+"""Transaction status enum"""
+enum TransactionStatus {
+  CANCELED
+  FAILED
+  PENDING
+  REFUNDED
+  REFUND_FAILED
+  REFUND_REQUESTED
+  SUCCESS
+}
+
+type TransactionsListResponse {
+  items: [TransactionListItem!]!
+  pagination: TransactionsPagination!
+}
+
+type TransactionsPagination {
+  skip: Int!
+  take: Int!
+  total: Int!
+}
+
+input TransactionsPaginationInput {
+  skip: Int
+  take: Int
+}
+
+input UnfollowUserInput {
+  targetUserId: ID!
+}
+
+input UpdateCategoryInput {
+  description: String
+  icon: String
+  isActive: Boolean
+  name: String
+  parentId: String
+}
+
+input UpdateProductInput {
+  categoryId: String
+  description: String
+  price: Float
+  productId: String!
+  status: ProductStatus
+  title: String
+}
+
+input UpdateReviewInput {
+  comment: String
+  rating: Float
+  reviewId: String!
+}
+
+type UserEmailModel {
+  email: String!
+  id: ID!
+}
+
+type UserInfoModel {
+  bio: String
+  displayName: String!
+  id: ID!
+  username: String!
+}
+
+type UserModel {
+  avatar: String
+  avatarType: String!
+  bio: String
+  displayName: String!
+  email: String!
+  id: ID!
+  isOnline: Boolean
+  isTotpEnabled: Boolean!
+  username: String!
+}
+
+input VerificationInput {
+  token: String!
+}

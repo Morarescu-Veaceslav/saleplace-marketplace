@@ -1,0 +1,5 @@
+subscription MessageChange($conversationId: String!) {
+  messageChange(conversationId: $conversationId) {
+    ...MessageFields
+  }
+}

@@ -1,0 +1,3 @@
+mutation UnblockUser($blockedId: String!){
+    unblockUser(blockedId: $blockedId)
+}

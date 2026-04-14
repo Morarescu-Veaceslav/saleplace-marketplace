@@ -1,0 +1,10 @@
+subscription NotificationCreated($userId: String!) {
+  notificationCreated(userId: $userId) {
+    id
+    type
+  	actor{
+      username,
+      avatar
+    }
+  }
+}

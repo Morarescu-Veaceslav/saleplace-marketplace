@@ -1,0 +1,16 @@
+query AllCategory {
+  allCategory {
+    id
+    name
+    slug
+    description
+    icon
+    parentId
+    children {
+      id
+      name
+      slug
+      description
+    }
+  }
+}

@@ -1,0 +1,757 @@
+{
+    "layout": {
+        "header": {
+            "logo": {
+                "platform": "Buy & Sell"
+            },
+            "headerMenu": {
+                "auth": "Auth",
+                "profileMenu": {
+                    "notification": {
+                        "heading": "Notifications",
+                        "loading": "Loading notifications...",
+                        "empty": "No notifications",
+                        "loadMore": "Load more",
+                        "POST_CREATED": "{username} created a new post",
+                        "COMMENT_CREATED": "{username} commented on your post",
+                        "ORDER_PAID": "Your order has been paid",
+                        "PRODUCT_SOLD": "Your product has been sold",
+                        "FOLLOWED": "{username} started following you",
+                        "ORDER_REFUNDED": "Your order was refunded",
+                        "ORDER_REFUNDED_FAILED": "Refund failed",
+                        "ORDER_REFUNDED_SELLER": "Order refunded to buyer",
+                        "INVOICE_PAID": "Invoice has been paid",
+                        "SUBSCRIPTION_CANCEL_SCHEDULED": "Subscription will be canceled",
+                        "SUBSCRIPTION_CANCELED": "Subscription was canceled",
+                        "SUBSCRIPTION_DELETED": "Subscription was deleted",
+                        "LIKED": "{username} liked your post"
+                    },
+                    "successMessage": "You have been logged out successfully.",
+                    "SESSION_DESTROY_FAILED": "Unable to log out. Please try again.",
+                    "profile": "My profile",
+                    "dashboard": "Dashboard",
+                    "logout": "Logout",
+                    "UNAUTHENTICATED": "You do not have the required permission. Please log in."
+                }
+            },
+            "search": {
+                "placeholder": "Search for products..."
+            },
+            "sidebar": {
+                "header": {
+                    "expand": "Expand",
+                    "collapse": "Collapse",
+                    "navigation": "Navigation"
+                },
+                "userNav": {
+                    "home": "Home",
+                    "categories": "Categories",
+                    "streams": "Streams",
+                    "recommended": "Recommended"
+                },
+                "recommended": {
+                    "heading": "Recommended Streams"
+                },
+                "profileNav": {
+                    "overview": "Overview",
+                    "posts": "Posts",
+                    "orders": "Orders",
+                    "messages": "Messages",
+                    "blocked": "Blocked Users",
+                    "followers": "Followers",
+                    "invoice": "Invoice",
+                    "settings": "Account Settings",
+                    "buttonMessage": "Message",
+                    "buttonFollow": "Follow",
+                    "buttonUnfollow": "Unfollow",
+                    "startConversation": {
+                        "START_CONVERSATION_ERROR": "Cannot start conversation with yourself.",
+                        "CONVERSATION_NOT_FOUND": "Conversation not found.",
+                        "PARTICIPANT_NOT_FOUND": "Participant not found."
+                    }
+                },
+                "dashboardNav": {
+                    "settings": "Settings",
+                    "create-product": "Create Product",
+                    "following": "Following",
+                    "subscription": "Subscription",
+                    "transactions": "Transactions"
+                }
+            }
+        }
+    },
+    "auth": {
+        "register": {
+            "heading": "Create an Account",
+            "description": "Start selling and buying today",
+            "backButtonLabel": "Have an account?",
+            "userNameLabel": "Username",
+            "userNameDescription": "Choose a unique username. Letters, numbers, and hyphens only.",
+            "emailLabel": "Email",
+            "emailDescription": "Enter a valid email address.",
+            "passwordLabel": "Password",
+            "passwordDescription": "Must be at least 8 characters long.",
+            "submitButton": "Register",
+            "successAlertTitle": "Registration Successful!",
+            "successAlertDescription": "Your account has been created successfully. A confirmation email has been sent to your inbox. You can now log in after confirming your email.",
+            "USERNAME_TAKEN": "Failed to register user. Please check your information and try again.",
+            "EMAIL_TAKEN": "An account with this email already exists."
+        },
+        "verify": {
+            "heading": "Account verification",
+            "description": "We are verifying your account. Please wait a moment.",
+            "successMessage": "Your email has been verified successfully!",
+            "TOKEN_IS_NOT_ASSOCIATED": "Verification failed. The link is invalid.",
+            "TOKEN_HAS_EXPIRED": "Verification failed. The link has expired. Please request a new one."
+        },
+        "login": {
+            "heading": "Welcome back",
+            "description": "Enter your credentials to access your account",
+            "backButtonLabel": "Don't have an account?",
+            "pinLabel": "Two-factor authentication code",
+            "pinDescription": "Enter your personal identification number",
+            "loginLabel": "Username or Email",
+            "loginDescription": "Enter your username or email address",
+            "passwordLabel": "Password",
+            "passwordDescription": "Enter your password",
+            "forgotPassword": "Forgot your password?",
+            "submitButton": "Log In",
+            "homeButton": "Home",
+            "successMessage": "You have logged in successfully!",
+            "LOGIN_ERROR": "Failed to log in. Please check your credentials.",
+            "INVALID_CREDENTIALS": "Invalid login or password.",
+            "EMAIL_NOT_VERIFIED": "Please verify your email address.",
+            "LOGIN_ERROR_TOTP": "Invalid or expired authentication code.",
+            "INTERNAL_SERVER_ERROR": "Something went wrong. Please try again.",
+            "UNAUTHENTICATED": "You do not have the required permission. Please log in.",
+            "ACCOUNT_BLOCKED": "Account is blocked.",
+            "ACCOUNT_DEACTIVATED": "Your account has been deactivated. Please contact support if you believe this is a mistake."
+        },
+        "resetPassword": {
+            "heading": "Reset password",
+            "description": "Enter your email address and we’ll send you a link to reset your password.",
+            "backButtonLabel": "Back to login",
+            "emailLabel": "Email",
+            "emailDescription": "Enter the email address associated with your account.",
+            "submitButton": "Send reset link",
+            "successAlertTitle": "Email sent!",
+            "successAlertDescription": "A password reset link has been sent to your email address. Please check your inbox.",
+            "RESET_PASSWORD_ERROR": "Unable to send the reset link at this time. Please try again later.",
+            "resetPassword": "Unable to send the reset link at this time. Please try again later."
+        },
+        "newPassword": {
+            "heading": "Set a new password",
+            "description": "Choose a new password to secure your account.",
+            "backButtonLabel": "Back to login",
+            "passwordLabel": "New password",
+            "passwordDescription": "Use at least 8 characters. A mix of letters and numbers is recommended for better security.",
+            "passwordRepeatLabel": "Confirm password",
+            "passwordRepeatDescription": "Enter the same password again to confirm.",
+            "submitButton": "Reset password",
+            "successMessage": "Your password has been reset successfully.",
+            "NEW_PASSWORD_ERROR": "Unable to reset your password. Please try again or request a new reset link.",
+            "INVALID_TOKEN": "This password reset link is invalid or has expired. Please request a new one."
+        },
+        "deactivate": {
+            "heading": "Deactivate Account",
+            "backButtonLabel": "Back",
+            "pinLabel": "Security PIN",
+            "pinDescription": "Enter your security PIN to confirm deactivation.",
+            "emailLabel": "Email Address",
+            "emailDescription": "Enter your email to confirm your identity.",
+            "passwordLabel": "Password",
+            "passwordDescription": "Enter your password to confirm account deactivation.",
+            "submitButton": "Deactivate Account",
+            "successMessage": "Your account has been successfully deactivated.",
+            "DEACTIVATE_ACCOUNT_ERROR": "Failed to deactivate your account. Please check your credentials and try again.",
+            "VERIFICATION_REQUIRED": "For security reasons, please enter the verification code we sent to you.",
+            "ACCOUNT_DEACTIVATED": "Your account has been successfully deactivated.",
+            "INVALID_EMAIL": "The email address you entered is incorrect.",
+            "INVALID_PASSWORD": "The password you entered is incorrect.",
+            "TOKEN_NOT_FOUND": "The verification code is invalid or has already been used.",
+            "TOKEN_EXPIRED": "The verification code has expired. Please request a new one.",
+            "verificationCodeSent": "A verification code has been sent to your email.",
+            "UNAUTHENTICATED": "You do not have the required permission. Please log in."
+        }
+    },
+    "dashboard": {
+        "settings": {
+            "header": {
+                "heading": "Settings",
+                "description": "General settings for your account",
+                "profile": "Profile",
+                "account": "Account",
+                "sessions": "Sessions"
+            },
+            "profile": {
+                "header": {
+                    "heading": "Profile Settings",
+                    "description": "Manage your personal information and profile preferences."
+                },
+                "avatar": {
+                    "heading": "Profile Avatar",
+                    "updateButton": "Update Avatar",
+                    "presetAvatar": {
+                        "heading": "Choose a preset avatar",
+                        "description": "Pick one of the preset avatars. You can change it anytime."
+                    },
+                    "confirmModal": {
+                        "heading": "Are you sure?",
+                        "message": "Do you want to remove your current avatar?"
+                    },
+                    "selectButton": "Choose image",
+                    "info": "Upload a clear image. Supported formats: JPG, JPEG, PNG, WebP or GIF. Max size: 10 MB",
+                    "success": {
+                        "successUpdateMessage": "Your avatar has been successfully updated.",
+                        "successRemoveMessage": "Your avatar has been successfully removed."
+                    },
+                    "errors": {
+                        "errorUpdateMessage": "Failed to update the avatar. Please try again.",
+                        "INVALID_AVATAR_REFERENCE": "Failed to remove the avatar. Please try again.",
+                        "FILE_ERROR": "Please select an image to upload.",
+                        "USER_NOT_FOUND": "User not authenticated.",
+                        "AVATAR_UPLOAD_FAILED": "Failed to upload avatar. Please try again.",
+                        "UNKNOWN": "Something went wrong. Please try again."
+                    }
+                },
+                "info": {
+                    "heading": "Edit Profile",
+                    "userNameLabel": "Username",
+                    "usernamePlaceholder": "Enter your username",
+                    "usernameDescription": "Your unique username used across the platform.",
+                    "displayNameLabel": "Display Name",
+                    "displayNamePlaceholder": "Enter your display name",
+                    "displayNameDescription": "This name will be shown publicly on your profile.",
+                    "bioLabel": "Bio",
+                    "bioPlaceholder": "Tell something about yourself...",
+                    "bioDescription": "A short description that appears on your profile.",
+                    "submitButton": "Save Changes",
+                    "successMessage": "Your profile has been updated successfully.",
+                    "USERNAME_TAKEN": "This username is already taken. Please choose another one.",
+                    "UNKNOWN": "An error occurred while updating your profile."
+                },
+                "socialLinks": {
+                    "createForm": {
+                        "heading": "Social Links",
+                        "titleLabel": "Title",
+                        "titlePlaceholder": "Platform name (e.g. Twitter, YouTube)",
+                        "titleDescription": "Enter the name of the platform you want to add.",
+                        "urlLabel": "URL",
+                        "urlPlaceholder": "https://example.com/your-profile",
+                        "urlDescription": "Paste the full link to your profile.",
+                        "submitButton": "Add Link",
+                        "successMessage": "Social link added successfully!",
+                        "errorMessage": "Failed to add social link. Please try again."
+                    },
+                    "editForm": {
+                        "cancelButton": "Cancel",
+                        "submitButton": "Save Changes",
+                        "titlePlaceholder": "Platform name",
+                        "urlPlaceholder": "Profile URL",
+                        "successUpdateMessage": "Social link updated successfully!",
+                        "errorUpdateMessage": "Failed to update social link. Please try again.",
+                        "successRemoveMessage": "Social link removed successfully!",
+                        "errorRemoveMessage": "Failed to remove social link. Please try again."
+                    },
+                    "successReorderMessage": "Your social links have been reordered.",
+                    "errorReorderMessage": "Could not reorder social links. Please try again."
+                }
+            },
+            "account": {
+                "header": {
+                    "heading": "Account Settings",
+                    "description": "Manage your account information and preferences.",
+                    "securityHeading": "Security",
+                    "securityDescription": "Update your password, enable two-factor authentication, and protect your account.",
+                    "deactivationHeading": "Deactivate Account",
+                    "deactivationDescription": "Temporarily disable your account and hide your profile."
+                },
+                "email": {
+                    "heading": "Change Email",
+                    "emailLabel": "Email Address",
+                    "emailDescription": "Enter your new email address.",
+                    "passwordLabel": "Password",
+                    "enterCurrentPassword": "Enter your current password",
+                    "passwordDescription": "For security reasons, please enter your password to confirm this change.",
+                    "submitButton": "Update Email",
+                    "successMessage": "Your email has been updated successfully.",
+                    "EMAIL_ALREADY_IN_USE": "This email address is already in use. Please choose a different one.",
+                    "AUTH_USER_NOT_FOUND": "Authenticated user not found. Please sign in again.",
+                    "SAME_EMAIL": "The new email address is the same as your current one.",
+                    "INCORRECT_PASSWORD": "The password you entered is incorrect."
+                },
+                "password": {
+                    "heading": "Change Password",
+                    "oldPasswordLabel": "Current Password",
+                    "oldPasswordDescription": "Enter your existing password.",
+                    "newPasswordLabel": "New Password",
+                    "oldPasswordPlaceholder": "Enter your current password",
+                    "newPasswordPlaceholder": "Enter your new password",
+                    "newPasswordDescription": "Enter a strong, unique password.",
+                    "submitButton": "Update Password",
+                    "successMessage": "Your password has been updated successfully.",
+                    "errorMessage": "Failed to update your password.",
+                    "INCORRECT_OLD_PASSWORD": "Incorrect old password.",
+                    "PASSWORD_SAME_AS_OLD": "New password cannot be the same as old password."
+                },
+                "twoFactor": {
+                    "heading": "Two-Factor Authentication",
+                    "description": "Add an extra layer of security to your account.",
+                    "enable": {
+                        "trigger": "Enable",
+                        "heading": "Enable Two-Factor Authentication",
+                        "qrInstruction": "Scan this QR code with your authenticator app.",
+                        "secretCodeLabel": "Secret Code:",
+                        "pinLabel": "Verification Code",
+                        "pinDescription": "Enter the 6-digit code from your authenticator app.",
+                        "submitButton": "Activate",
+                        "successMessage": "Two-factor authentication has been enabled successfully.",
+                        "TOTP_CODE_ERROR": "The verification code is incorrect."
+                    },
+                    "disabled": {
+                        "trigger": "Disable",
+                        "heading": "Disable Two-Factor Authentication",
+                        "message": "Are you sure you want to disable two-factor authentication?",
+                        "successMessage": "Two-factor authentication has been disabled successfully.",
+                        "errorMessage": "Failed to disable two-factor authentication."
+                    }
+                },
+                "deactivation": {
+                    "heading": "Deactivate Account",
+                    "description": "You can temporarily deactivate your account. Your profile will be hidden until you reactivate it.",
+                    "confirmModal": {
+                        "heading": "Confirm Deactivation",
+                        "message": "Are you sure you want to deactivate your account? You will be able to restore it within the next 7 days. After this period, your account will be permanently deleted."
+                    },
+                    "button": "Deactivate Account"
+                }
+            },
+            "appearance": {
+                "theme": {
+                    "toggleTheme": "Toggle theme",
+                    "darkEnabled": "Dark mode enabled.",
+                    "lightEnabled": "Light mode enabled."
+                },
+                "language": {
+                    "changeLanguage": "Change language",
+                    "successMessage": "Язык успешно обновлён!"
+                }
+            },
+            "sessions": {
+                "header": {
+                    "heading": "Account Sessions",
+                    "description": "Manage your active sessions across all devices and locations."
+                },
+                "info": {
+                    "current": "This is your current session.",
+                    "active": "Active sessions on other devices",
+                    "notFound": "No active sessions found."
+                },
+                "sessionItem": {
+                    "deleteButton": "Delete",
+                    "detailsButton": "Details",
+                    "confirmModal": {
+                        "heading": "Confirm Logout",
+                        "message": "Are you sure you want to end this session? This action will completely delete the session, and all activities on this device will be terminated."
+                    },
+                    "successMessage": "The session has been successfully terminated.",
+                    "errorMessage": "An error occurred while logging out. Please try again."
+                },
+                "sessionModal": {
+                    "heading": "Session Details",
+                    "device": "Device:",
+                    "location": "Location:",
+                    "ipAddress": "IP Address:",
+                    "createdAt": "Created At:"
+                }
+            },
+            "following": {
+                "header": {
+                    "heading": "Following",
+                    "description": "List of users you are subscribed to"
+                },
+                "actions": {
+                    "unfollow": "Unfollow"
+                },
+                "empty": "You are not following anyone yet.",
+                "followingSince": "Following since {date}",
+                "USER_NOT_FOUND": "The user could not be found.",
+                "FOLLOW_SELF": "You cannot follow yourself.",
+                "UNAUTHENTICATED": "You do not have the required permission. Please log in."
+            },
+            "unfollowing": {
+                "success": "You have unfollowed the user.",
+                "USER_NOT_FOUND": "The user could not be found.",
+                "UNKNOWN_ERROR": "Something went wrong. Please try again."
+            },
+            "subscription": {
+                "header": {
+                    "heading": "Subscription Plans",
+                    "description": "Manage and customize your channel's subscription plans"
+                },
+                "plan": "Plan",
+                "price": "Price",
+                "intervalMonth": "per month",
+                "intervalYear": "per year",
+                "start": "Start",
+                "end": "End",
+                "empty": "You are not subscribed to any subscription.",
+                "usersLimit": "Users/Limit",
+                "status": "Status",
+                "cancel": "Cancel Subscription",
+                "active": "Active",
+                "canceled": "Canceled",
+                "changePlan": "Change Plan",
+                "successStatus": "Subscription has been canceled",
+                "statusCanceled": "Your subscription has been canceled",
+                "SUBSCRIPTION_NOT_FOUND": "Subscription not found"
+            },
+            "plans": {
+                "header": "Choose your plan",
+                "description": "Pick the plan that fits you best",
+                "infoMessage": "Select a plan that fits your needs. You can upgrade, downgrade, or cancel anytime.",
+                "subscribe": "Subscribe",
+                "intervalMonth": "per month",
+                "intervalYear": "per year",
+                "limit": "Limit",
+                "unlimited": "Unlimited",
+                "perMonth": "per month",
+                "planLabel": "Plan",
+                "confirmModal": {
+                    "heading": "Change subscription plan",
+                    "unusedProducts": "You still have {remaining} unused products on your current plan. If you continue, they will be lost."
+                },
+                "PLAN_NOT_FOUND": "The selected plan could not be found."
+            },
+            "transactions": {
+                "header": {
+                    "heading": "Transactions",
+                    "description": "View the list of your recent transactions."
+                },
+                "columns": {
+                    "date": "Date",
+                    "status": "Status",
+                    "amount": "Amount",
+                    "product": "Product",
+                    "counterparty": "Counterparty",
+                    "role": "Role"
+                },
+                "status": {
+                    "PENDING": "Pending",
+                    "SUCCESS": "Completed",
+                    "FAILED": "Failed",
+                    "CANCELED": "Canceled",
+                    "REFUNDED": "Refunded",
+                    "REFUND_REQUESTED": "Refund requested",
+                    "REFUND_FAILED": "Refund failed"
+                },
+                "caption": "Your recent transactions",
+                "notFound": "No transactions found"
+            }
+        },
+        "product": {
+            "step1": {
+                "header": {
+                    "heading": "Create Product",
+                    "description": "Fill in the basic information about your product, including title, price, and category. This information will be visible to potential buyers."
+                },
+                "heading": "Create a New Product Listing",
+                "title": {
+                    "label": "Title",
+                    "placeholder": "Enter product title",
+                    "description": "Short and clear title of your product"
+                },
+                "price": {
+                    "label": "Price",
+                    "placeholder": "Enter price",
+                    "description": "Set a fair price for your product"
+                },
+                "description": {
+                    "label": "Description",
+                    "placeholder": "Describe your product",
+                    "description": "Provide detailed information about the product"
+                },
+                "category": {
+                    "label": "Category",
+                    "description": "Select a category and subcategory",
+                    "placeholderParent": "Select category",
+                    "placeholderChild": "Select subcategory"
+                },
+                "submitButton": "Save and continue",
+                "EMAIL_NOT_VERIFIED": "Please verify your email address.",
+                "INVALID_INPUT": "Title is required.",
+                "INVALID_PRICE": "Invalid price.",
+                "CATEGORY_NOT_FOUND": "Category not found.",
+                "CATEGORY_INACTIVE": "Category inactive.",
+                "CATEGORY_NOT_LEAF": "Product can be added only to leaf categories."
+            },
+            "step2": {
+                "header": {
+                    "heading": "Upload Images",
+                    "description": "Add up to 10 images to make your product more attractive and improve visibility."
+                },
+                "heading": "Upload Product Images",
+                "selectButton": "Select images",
+                "updateButton": "Save images and continue",
+                "info": "You can upload up to 10 images (JPG, PNG, WEBP). Maximum file size is 10 MB per image.",
+                "reorderInfo": "You can drag and drop images to change their order. The first image will be the main one.",
+                "PRODUCT_NOT_FOUND": "Product not found",
+                "USER_NOT_FOUND": "User not found",
+                "FILE_ERROR": "Please select valid image files to upload",
+                "NOT_YOUR_PRODUCT": "You can't edit this product",
+                "IMAGE_LIMIT_EXCEEDED": "You can upload up to 10 images",
+                "INVALID_FILE_TYPE": "Only JPG, PNG, WEBP images are allowed",
+                "UNKNOWN": "An error occurred while uploading images",
+                "errors": {
+                    "minFiles": "Please select at least one image",
+                    "maxFiles": "You can upload up to 10 images",
+                    "fileTooLarge": "File is too large (max 10MB)",
+                    "invalidFileType": "Only JPG, PNG, WEBP images are allowed",
+                    "invalidFile": "Invalid file"
+                }
+            },
+            "step3": {
+                "header": {
+                    "heading": "Publish Product",
+                    "description": "Review and publish your product"
+                },
+                "heading": "Review and publish your product",
+                "title": {
+                    "label": "Title",
+                    "placeholder": "Enter product title",
+                    "description": "Provide a clear and concise title that describes your product."
+                },
+                "price": {
+                    "label": "Price",
+                    "placeholder": "Enter product price",
+                    "description": "Set a fair and competitive price for your product."
+                },
+                "description": {
+                    "label": "Description",
+                    "placeholder": "Describe your product",
+                    "description": "Add detailed information to help buyers understand your product."
+                },
+                "category": {
+                    "label": "Category",
+                    "description": "Select the most appropriate category for your product."
+                },
+                "status": {
+                    "label": "Status",
+                    "placeholder": "Select product status",
+                    "description": "Choose the visibility and availability of your product.",
+                    "options": {
+                        "DRAFT": "Draft",
+                        "ACTIVE": "Active",
+                        "ARCHIVED": "Archived",
+                        "DELETED": "Deleted"
+                    }
+                },
+                "deletedProduct": "This product was deleted and cannot be edited.",
+                "reorderInfo": "You can drag and drop images to change their order. The first image will be the main one.",
+                "submitButton": "Publish Product",
+                "PRODUCT_NOT_FOUND": "Product not found.",
+                "INVALID_PRODUCT_STATUS": "Invalid product status.",
+                "CATEGORY_NOT_FOUND": "Category not found.",
+                "CATEGORY_NOT_LEAF": "Please select a valid subcategory.",
+                "INVALID_PRICE": "Invalid price. Please enter a valid amount."
+            },
+            "imagesDnD": {
+                "main": "Main"
+            },
+            "productImagesManager": {
+                "deleteProduct": {
+                    "NOT_ALLOWED": "You are not allowed to delete these images.",
+                    "IMAGES_NOT_FOUND": "The selected images were not found."
+                },
+                "updateImagesPosition": {
+                    "NOT_ALLOWED": "You are not allowed to reorder these images.",
+                    "INVALID_INPUT": "Invalid input data. Please try again."
+                }
+            },
+            "productDetails": {
+                "categoty": "Category:",
+                "status": "Status:",
+                "posted": "Posted:",
+                "views": "Views:",
+                "description": "Description",
+                "reviews": "Reviews",
+                "startChat": "Chat with seller",
+                "noReview": "No reviews yet.",
+                "editButton": "Edit Product"
+            },
+            "review": {
+                "header": "Write a review",
+                "description": "Share your experience with this product",
+                "labelRating": "Rating",
+                "labelCommnet": "Comment",
+                "placeholderComment": "Write your review...",
+                "submitButton": "Submit review",
+                "reviewAdded": "Review added successfully.",
+                "REVIEW_ERROR": "You must provide at least a rating or a comment.",
+                "RATING_ERROR": "Rating must be between 1 and 5.",
+                "PRODUCT_NOT_FOUND": "Product not found.",
+                "REVIEW_ALREADY_EXISTS": "You already reviewed this product. You can edit your review."
+            },
+            "byProdudct": {
+                "buy": "Buy now",
+                "redirecting": "Redirecting...",
+                "PRODUCT_NOT_FOUND": "Product not found",
+                "PRODUCT_NOT_AVAILABLE": "Product is not available",
+                "PRODUCT_ALREADY_RESERVED": "Product is already reserved"
+            },
+            "editProduct": {
+                "successMessage": "Review updated successfully.",
+                "labelRating": "Rating",
+                "labelCommnet": "Comment",
+                "placeholderComment": "Write your review...",
+                "buttonSubmit": "Save",
+                "buttonCancel": "Cancel",
+                "REVIEW_UPDATE_ERROR": "You must update at least rating or comment.",
+                "REVIEW_NOT_FOUND": "Review not found.",
+                "FORBIDDEN": "You cannot add a comment to your post."
+            },
+            "deleteReview": {
+                "successMessage": "Review deleted successfully.",
+                "buttonDelete": "Delete",
+                "REVIEW_NOT_FOUND": "Review not found.",
+                "FORBIDDEN": "You cannot delete a comment to your post."
+            },
+            "userProduct": {
+                "header": "{username}'s products",
+                "description": "Browse all products listed by this user",
+                "noImage": "No image",
+                "loadMore": "Load more",
+                "loading": "Loading...",
+                "noMoreProducts": "No more products",
+                "USER_NOT_FOUND": "User not found."
+            },
+            "deleteProduct": {
+                "submitButton": "Delete Product",
+                "confirmModal": "Are you sure you want to delete this product?",
+                "message": "This will permanently delete the product. This action is irreversible.",
+                "successMessage": "Product deleted successfully."
+            }
+        }
+    },
+    "sidebar": {
+        "search": "Search...",
+        "searchPlaceholder": "Search for products...",
+        "category": "Category",
+        "minPrice": "Min Price",
+        "maxPrice": "Max Price"
+    },
+    "profile": {
+        "chat": {
+            "heading": "Select a conversation",
+            "description": "Choose a conversation from the list to start chatting.",
+            "conversationList": "Your conversation list",
+            "unavailable": "Chat unavailable",
+            "unavailableMessage": "Chat is not available for this stream",
+            "loading": "Loading chat...",
+            "loadMore": "Load more",
+            "sendMessage": {
+                "placeholder": "Type a message...",
+                "emojiPlaceholder": "Add emoji",
+                "errorMessage": "Failed to send message",
+                "FORBIDDEN": "You are not a participant of this conversation.",
+                "CHAT_BLOCKED": "You cannot send messages to this user."
+            },
+            "editMessage": {
+                "MESSAGE_NOT_FOUND": "Message not found.",
+                "EDIT_MESSAGES_ERROR": "Cannot edit others messages.",
+                "submitButton": "Save",
+                "cancelButton": "Cancel",
+                "editButton": "edit",
+                "deleteButton": "Delete",
+                "editedMessage": "(edited)",
+                "introduction": "Enter to save • Esc to cancel"
+            },
+            "deleteMessage": {
+                "deletedMessage": "message deleted",
+                "heading": "Delete message?",
+                "message": "Are you sure you want to delete this message? This action cannot be undone.",
+                "MESSAGE_NOT_FOUND": "Message not found.",
+                "DELETE_MESSAGES_ERROR": "Cannot delete others messages."
+            },
+            "cahtMenu": {
+                "conversation": {
+                    "heading": "Delete conversation?",
+                    "message": "Are you sure you want to delete this conversation?",
+                    "deleteChat": "Delete chat",
+                    "CONVERSATION_NOT_FOUND": "Conversation not found.",
+                    "DELETE_CONVERSATION_ERROR": "Cannot delete others conversation."
+                },
+                "blockUser": {
+                    "heading": "Block this user?",
+                    "message": "Are you sure you want to block this user?",
+                    "block": "Block user",
+                    "BLOCK_USER_ERROR": "Cannot block yourself."
+                }
+            }
+        },
+        "blockedUsers": {
+            "header": {
+                "heading": "List of blocked users",
+                "description": "Here are all the users blocked by you. You can unblock them by pressing the unblock button."
+            },
+            "blockedSince": "User blocked on {date}",
+            "empty": "You have no blocked users.",
+            "actions": {
+                "unblock": "Unblock"
+            }
+        },
+        "followers": {
+            "header": {
+                "heading": "Followers",
+                "description": "List of users following this page"
+            },
+            "actions": {
+                "unfollow": "Unfollow"
+            },
+            "followingSince": "Following since {date}",
+            "empty": "There are no followers."
+        }
+    },
+    "payment": {
+        "success": {
+            "heading": "Payment Successful",
+            "details": {
+                "message": "Activating your subscription..."
+            }
+        },
+        "cancel": {
+            "heading": "Payment Canceled",
+            "details": {
+                "message": "Canceled your subscription..."
+            }
+        }
+    },
+    "notFound": {
+        "description": "The page you are looking for does not exist or has been moved.",
+        "backToHome": "Back to Home"
+    },
+    "components": {
+        "confirmModal": {
+            "cancel": "Cancel",
+            "continue": "Continue"
+        }
+    },
+    "utils": {
+        "formatDate": {
+            "months": {
+                "january": "January",
+                "february": "February",
+                "march": "March",
+                "april": "April",
+                "may": "May",
+                "june": "June",
+                "july": "July",
+                "august": "August",
+                "september": "September",
+                "octomber": "October",
+                "november": "November",
+                "december": "December"
+            }
+        }
+    }
+}

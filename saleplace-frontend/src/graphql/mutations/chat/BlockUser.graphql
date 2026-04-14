@@ -1,0 +1,10 @@
+mutation BlockUser($blockedId: String!){
+  blockUser(blockedId: $blockedId){
+    id
+    username
+    displayName
+    avatar
+    avatarType
+    createdAt
+  }
+}

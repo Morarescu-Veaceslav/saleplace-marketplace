@@ -1,0 +1,13 @@
+query GetBlockUser($pagination: BlockUserInput!){
+  getBlockUser(pagination: $pagination){
+    items{
+      id
+      username
+      displayName
+      avatar
+      avatarType
+      createdAt
+    }
+    total
+  }
+}

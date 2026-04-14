@@ -1,0 +1,13 @@
+query PublicProfile($username: String!) {
+  publicProfile(username: $username) {
+    id
+    username
+    displayName
+    avatar
+    avatarType
+    bio
+    createdAt
+    isOnline
+    isFollowedByCurrentUser
+  }
+}

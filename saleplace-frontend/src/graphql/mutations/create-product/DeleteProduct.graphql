@@ -1,0 +1,3 @@
+mutation DeleteProduct($data: DeleteProductInput!){
+    deleteProduct(data:$data)
+}

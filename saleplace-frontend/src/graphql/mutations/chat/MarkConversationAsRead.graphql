@@ -1,0 +1,3 @@
+mutation MarkConversationAsRead($conversationId: String!){
+  markConversationAsRead(conversationId: $conversationId)
+}

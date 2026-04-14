@@ -1,0 +1,3 @@
+query GetUnreadCount($conversationId: String!){
+  getUnreadCount(conversationId: $conversationId)
+}

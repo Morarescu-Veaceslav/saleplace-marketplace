@@ -1,0 +1,14 @@
+query GetUserProducts($username: String!, $cursor: String, $take: Int) {
+  getUserProducts(username: $username, cursor: $cursor, take: $take) {
+    items {
+      id
+      title
+      slug
+      price
+      images
+      createdAt
+    }
+    nextCursor
+    hasMore
+  }
+}

@@ -1,0 +1,7 @@
+mutation ChangeProfileAvatar($data: ChangePresetAvatarInput!){
+    changeProfileAvatar(data: $data){
+        id
+        avatar
+        avatarType
+    }
+}

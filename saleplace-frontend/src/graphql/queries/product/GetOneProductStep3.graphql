@@ -1,0 +1,24 @@
+query GetOneProductStep3($id: String!) {
+   getOne(id: $id) {
+    id
+    title
+    slug
+    description
+    price
+    status
+     category {
+      id
+      name
+      parentId
+      children {
+        id
+        name
+      }
+    }
+    images {
+      id
+      url
+      position
+    }
+  }
+}

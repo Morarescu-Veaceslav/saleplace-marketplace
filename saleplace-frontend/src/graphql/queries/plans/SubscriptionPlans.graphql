@@ -1,0 +1,8 @@
+query SubscriptionPlans{
+    subscriptionPlans{
+        id
+        name
+        productLimit
+        price
+    }
+}

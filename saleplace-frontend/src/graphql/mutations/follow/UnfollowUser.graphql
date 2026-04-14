@@ -1,0 +1,3 @@
+mutation UnfollowUser($data: UnfollowUserInput!){
+ unfollowUser(data: $data)
+}

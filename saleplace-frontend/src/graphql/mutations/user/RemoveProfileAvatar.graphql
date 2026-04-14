@@ -1,0 +1,7 @@
+mutation RemoveProfileAvatar{
+    removeProfileAvatar{
+        id
+        avatar
+        avatarType
+    }
+}

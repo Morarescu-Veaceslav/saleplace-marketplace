@@ -1,0 +1,21 @@
+query TransactionsList($pagination: TransactionsPaginationInput) {
+  transactionsList(pagination: $pagination) {
+    items {
+      id
+      orderId
+      productTitle
+      amount
+      currency
+      status
+      viewerRole
+      counterpartyId
+      counterpartyUsername
+      createdAt
+    }
+    pagination {
+      total
+      take
+      skip
+    }
+  }
+}

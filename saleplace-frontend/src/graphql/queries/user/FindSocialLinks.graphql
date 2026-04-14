@@ -1,0 +1,8 @@
+query SocialLinks($username: String!) {
+  socialLinks(username: $username) {
+    id
+    url
+    title
+    position
+  }
+}

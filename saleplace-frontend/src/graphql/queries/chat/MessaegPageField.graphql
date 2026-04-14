@@ -1,0 +1,6 @@
+fragment MessagePageFields on MessagePage {
+  messages {
+    ...MessageFields
+  }
+  totalCount
+}

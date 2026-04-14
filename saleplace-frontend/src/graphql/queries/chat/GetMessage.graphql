@@ -1,0 +1,5 @@
+query GetMessages($conversationId: String!, $pagination: ItemPaginationInput) {
+  getMessages(conversationId: $conversationId, pagination: $pagination) {
+    ...MessagePageFields
+  }
+}
